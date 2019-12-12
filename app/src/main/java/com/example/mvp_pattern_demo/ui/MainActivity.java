@@ -1,25 +1,30 @@
 package com.example.mvp_pattern_demo.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.mvp_pattern_demo.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MovieView {
-    TextView textView;
-    Button button;
+
     MoviePresenter presenter;
+    @BindView(R.id.textView)
+    TextView textView;
+    @BindView(R.id.button)
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textView);
-        button = findViewById(R.id.button);
+        ButterKnife.bind(this);
         button.setOnClickListener(this);
         presenter = new MoviePresenter(this);
     }
